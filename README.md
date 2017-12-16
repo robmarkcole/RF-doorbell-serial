@@ -7,3 +7,5 @@ I purchased a cheap RF doorbell and receiver on Amazon. I wish to integrate it t
 * Arduino library https://github.com/sui77/rc-switch
 * HA blog post on reading over the serial https://home-assistant.io/blog/2017/10/23/simple-analog-sensor/
 * HA serial platform docs https://home-assistant.io/components/sensor.serial/
+
+<img src="https://github.com/robmarkcole/RF-doorbell-serial/blob/master/Arduino-rf-remote.JPG">
