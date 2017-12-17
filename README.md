@@ -69,6 +69,20 @@ binary_sensor:
     name: "Doorbell"
     state_topic: "doorbell"
 ```
+Finally I create an automation to send me a notification when the doorbell is pressed:
+```
+- action:
+  - data:
+      message: The doorbell was pressed
+    service: notify.robins_and_marias_iphones
+  alias: Doorbell notification
+  condition: []
+  id: '1513507538746'
+  trigger:
+  - entity_id: binary_sensor.doorbell
+    platform: state
+    to: 'on'
+```
 
 ## Hassio
 I'm running Hassio on a pi3. To check the serial port that the Arduino is connected on I SSH into the Hassio and run **hassio host hardware**, and find that the Arduino is on **/dev/ttyACM0**.
