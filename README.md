@@ -29,7 +29,7 @@ binary_sensor:
   - platform: template
     sensors:
       doorbell:
-        value_template: "{{ is_state('input_boolean.doorbell', 'on')
+        value_template: "{{ is_state('input_boolean.doorbell', 'on') }}"
 ```
 I now use the automations editor to create automations to toggle the input_boolean when the serial sensor changes state (after a doorbell button press). The editor adds the following to automations.yaml.
 ```
@@ -56,7 +56,7 @@ I now use the automations editor to create automations to toggle the input_boole
 I now have a boolean on my Home-assistant front end which turns on when the doorbell is pressed.
 
 ## Hassio
-I'm running Hassio on a pi3. To check the serial port that the Arduino is connected on I SSH into the Hassio and run **hassio host hardware**, and find that the Arduino is on **/dev/ttyACM0**. 
+I'm running Hassio on a pi3. To check the serial port that the Arduino is connected on I SSH into the Hassio and run **hassio host hardware**, and find that the Arduino is on **/dev/ttyACM0**.
 
 ## Refs
 * Doorbell https://www.amazon.co.uk/gp/product/B01LQBRJFA/ref=oh_aui_detailpage_o01_s00?ie=UTF8&psc=1
