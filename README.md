@@ -31,10 +31,15 @@ binary_sensor:
       doorbell:
         value_template: "{{ is_state('input_boolean.doorbell', 'on') }}"
 ```
-I now use the automations editor to create automations to toggle the input_boolean when the serial sensor changes state (after a doorbell button press). The editor adds the following to automations.yaml.
+I now use the automations editor to create automations to toggle the input_boolean when the serial sensor changes state (after a doorbell button press). Additionally I publish ON/OFF on the MQTT topic 'doorbell' so that a remote HA instance can receive the doorbell state. I now have in automations.yaml.
 ```
 - action:
   - service: input_boolean.turn_on
+  - alias: ''
+    data:
+      payload: 'ON'
+      topic: doorbell
+    service: mqtt.publish
   alias: Doorbell_on
   condition: []
   id: '1513433912908'
@@ -43,17 +48,27 @@ I now use the automations editor to create automations to toggle the input_boole
     platform: state
 - action:
   - service: input_boolean.turn_off
+  - data:
+      payload: 'OFF'
+      topic: doorbell
+    service: mqtt.publish
   alias: Doorbell_off
   condition: []
   id: '1513433982733'
   trigger:
   - entity_id: input_boolean.doorbell
-    platform: state
-    to: 'on'
     for:
       seconds: 2
+    platform: state
+    to: 'on'
 ```
-I now have a boolean on my Home-assistant front end which turns on when the doorbell is pressed.
+I now have a boolean on my Home-assistant front end which turns on when the doorbell is pressed. I can also view the state of the doorbell on a remote HA instance using an [MQTT binary sensor](https://home-assistant.io/components/binary_sensor.mqtt/), with the following in my config:
+```
+binary_sensor:
+  - platform: mqtt
+    name: "Doorbell"
+    state_topic: "doorbell"
+```
 
 ## Hassio
 I'm running Hassio on a pi3. To check the serial port that the Arduino is connected on I SSH into the Hassio and run **hassio host hardware**, and find that the Arduino is on **/dev/ttyACM0**.
