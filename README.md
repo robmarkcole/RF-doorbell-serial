@@ -58,6 +58,9 @@ I now have a boolean on my Home-assistant front end which turns on when the door
 ## Hassio
 I'm running Hassio on a pi3. To check the serial port that the Arduino is connected on I SSH into the Hassio and run **hassio host hardware**, and find that the Arduino is on **/dev/ttyACM0**.
 
+## Synology
+My main HA instance runs in Docker on a Synology. To try https://philhawthorne.com/installing-home-assistant-io-on-a-synology-diskstation-nas/
+
 ## Refs
 * Doorbell https://www.amazon.co.uk/gp/product/B01LQBRJFA/ref=oh_aui_detailpage_o01_s00?ie=UTF8&psc=1
 * Arduino library https://github.com/sui77/rc-switch
